@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentView01: View {
     var body: some View {
         ScrollView{
             LazyVStack {
@@ -22,5 +22,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView01()
 }
