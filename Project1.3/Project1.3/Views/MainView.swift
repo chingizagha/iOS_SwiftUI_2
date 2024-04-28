@@ -36,21 +36,35 @@ struct MainView: View {
     
     var body: some View {
         NavigationStack {
-            List{
-                ForEach(activities.items) { item in
-                    HStack{
-                        VStack(alignment: .leading) {
-                            Text(item.title)
-                                .font(.headline)
-                            
-                            Text(item.description)
-                                .font(.subheadline)
-                            
-                            Text(String(item.count))
-                                .font(.subheadline)
+                List{
+                    ForEach(activities.items) { item in
+                        NavigationLink{
+                            DetailView(activity: item)
+                        } label: {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(item.title)
+                                        .font(.headline)
+                                    
+                                    Text(item.description)
+                                        .font(.subheadline)
+                                    
+                                    Text(String(item.count))
+                                        .font(.subheadline)
+                                }
+                            }
                         }
-                    }
                 }
+            }
+            .navigationTitle("Activities")
+            .toolbar{
+                Button("Add Activity", systemImage: "plus") {
+                    showingAddExpense = true
+                }
+            }
+            
+            .sheet(isPresented: $showingAddExpense){
+                AddView(activities: activities)
             }
         }
     }

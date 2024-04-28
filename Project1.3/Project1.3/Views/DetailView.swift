@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct DetailView: View {
+    
+    @State private var activity: Activity
+    
+    init(activity: Activity) {
+        self.activity = activity
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Form{
+                Text(activity.title)
+                Text(activity.description)
+            }
+        }
+        
     }
 }
 
 #Preview {
-    DetailView()
+    DetailView(activity: Activity(title: "ss", description: "ss", count: 0))
 }
